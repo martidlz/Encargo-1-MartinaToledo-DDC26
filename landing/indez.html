@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Martina Toledo — Diseño PUCV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Space+Grotesk:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBEEDD;
+    --cream-2:#F6E4CE;
+    --ink:#2A1F17;
+    --coral:#7fbb65;
+    --coral-dark:#7bd28f;
+    --pink:#91e774;
+    --peach:#61c09f;
+    --yellow:#8bb8fa;
+    --card-radius: 28px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fredoka', sans-serif;
+    line-height:1.02;
+  }
+  .script{
+    font-family:'Caveat', cursive;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 32px;}
+
+  /* decorative shapes */
+  .blob{position:absolute; border-radius:50%; filter:blur(0px); z-index:0;}
+  .star{position:absolute; z-index:2; opacity:.9;}
+  .star svg{display:block;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,238,221,.88);
+    backdrop-filter:blur(6px);
+    border-bottom:2px solid rgba(42,31,23,.08);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1160px; margin:0 auto;
+  }
+  .logo{font-family:'Fredoka'; font-weight:700; font-size:1.3rem; letter-spacing:.5px;}
+  .logo span{color:var(--coral);}
+  .nav-links{display:flex; gap:28px; font-size:.95rem; font-weight:500;}
+  .nav-links a{position:relative; padding:4px 0;}
+  .nav-links a:hover{color:var(--coral);}
+  .nav-cta{
+    background:var(--coral); color:var(--cream); font-weight:600; font-size:.88rem;
+    padding:10px 20px; border-radius:999px; white-space:nowrap;
+    box-shadow:0 4px 0 var(--coral-dark);
+    transition:transform .15s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px);}
+  .burger{display:none; font-size:1.6rem; background:none; border:none; cursor:pointer; color:var(--ink);}
+
+  /* HERO */
+  header.hero{
+    position:relative;
+    padding:70px 0 90px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center;
+    position:relative; z-index:2;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--yellow); color:var(--ink); font-weight:600; font-size:.78rem;
+    padding:7px 16px; border-radius:999px; margin-bottom:22px; letter-spacing:.03em;
+    text-transform:uppercase;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    font-weight:700;
+    color:var(--ink);
+  }
+  .hero h1 .accent{color:var(--coral);}
+  .hero .script{
+    display:block; font-size:clamp(1.8rem, 3.4vw, 2.6rem); color:var(--pink); margin-top:4px;
+  }
+  .hero p.lead{
+    margin-top:20px; font-size:1.08rem; line-height:1.6; max-width:480px; color:#4a3a2c;
+  }
+  .hero-actions{display:flex; gap:14px; margin-top:30px; flex-wrap:wrap;}
+  .btn-solid{
+    background:var(--coral); color:var(--cream); font-weight:600; padding:14px 26px;
+    border-radius:999px; box-shadow:0 5px 0 var(--coral-dark); font-size:.95rem;
+    transition:transform .15s ease;
+  }
+  .btn-solid:hover{transform:translateY(-2px);}
+  .btn-ghost{
+    border:2px solid var(--ink); font-weight:600; padding:12px 24px; border-radius:999px;
+    font-size:.95rem; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-ghost:hover{background:var(--ink); color:var(--cream);}
+
+  /* ID card */
+  .id-card-wrap{position:relative; display:flex; justify-content:center; z-index:2;}
+  .id-card{
+    width:290px; background:var(--ink); color:var(--cream); border-radius:24px;
+    padding:22px; transform:rotate(6deg);
+    box-shadow:14px 18px 0 rgba(42,31,23,.12);
+    position:relative;
+  }
+  .id-card .top-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;}
+  .id-tag{font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--peach); font-weight:600;}
+  .id-photo{
+    width:100%; aspect-ratio:1/1; border-radius:16px; margin-bottom:16px;
+    background:linear-gradient(135deg, var(--coral), var(--pink));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fredoka'; font-size:3.2rem; font-weight:700; color:var(--cream);
+  }
+  .id-name{font-family:'Fredoka'; font-size:1.25rem; font-weight:600;}
+  .id-role{font-size:.78rem; color:var(--peach); margin-top:2px;}
+  .id-meta{margin-top:14px; font-size:.72rem; color:#cabcae; line-height:1.7;}
+  .id-meta b{color:var(--cream); font-weight:600;}
+  .id-strip{
+    position:absolute; top:-14px; left:50%; transform:translateX(-50%) rotate(6deg);
+    width:60px; height:26px; background:var(--yellow); border-radius:6px;
+  }
+
+  /* SECTIONS shared */
+  section{position:relative; padding:90px 0; z-index:1;}
+  .section-tag{
+    font-size:.78rem; font-weight:600; text-transform:uppercase; letter-spacing:.1em;
+    color:var(--coral); margin-bottom:10px;
+  }
+  .section-title{font-size:clamp(1.9rem, 3.4vw, 2.7rem); font-weight:600; max-width:640px;}
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:center; margin-top:44px;}
+  .about-blob{
+    position:relative; aspect-ratio:1/1; border-radius:40% 60% 55% 45% / 55% 45% 55% 45%;
+    background:linear-gradient(160deg, var(--pink), var(--coral));
+    display:flex; align-items:center; justify-content:center;
+  }
+  .about-blob .initials{
+    font-family:'Fredoka'; font-weight:700; font-size:5rem; color:var(--cream);
+  }
+  .about-list{list-style:none; margin-top:26px; display:grid; gap:14px;}
+  .about-list li{
+    display:flex; gap:12px; align-items:flex-start; font-size:1rem; line-height:1.55;
+  }
+  .about-list .dot{
+    min-width:26px; height:26px; border-radius:50%; background:var(--yellow);
+    display:flex; align-items:center; justify-content:center; font-size:.85rem; margin-top:2px;
+  }
+
+  /* WORK GRID */
+  .work-toolbar{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  }
+  .work-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:40px;
+  }
+  .work-card{
+    background:var(--ink); border-radius:24px; overflow:hidden; color:var(--cream);
+    display:flex; flex-direction:column; min-height:270px; padding:24px;
+    position:relative; transition:transform .2s ease;
+  }
+  .work-card:hover{transform:translateY(-6px);}
+  .work-card .swatch{
+    position:absolute; inset:0; opacity:.16; z-index:0;
+  }
+  .work-card .content{position:relative; z-index:1; display:flex; flex-direction:column; height:100%;}
+  .work-year{font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--peach); font-weight:600;}
+  .work-title{font-family:'Fredoka'; font-size:1.28rem; font-weight:600; margin-top:10px; line-height:1.2;}
+  .work-desc{font-size:.86rem; color:#d8ccbf; margin-top:10px; line-height:1.55; flex:1;}
+  .work-link{
+    margin-top:16px; font-size:.82rem; font-weight:600; display:inline-flex; align-items:center; gap:6px;
+    color:var(--cream);
+  }
+  .work-link svg{width:14px; height:14px;}
+
+  /* NUMBERS */
+  .numbers-panel{
+    background:var(--coral); border-radius:32px; padding:52px 44px;
+    display:grid; grid-template-columns:1.1fr repeat(3, .8fr); gap:26px; align-items:center;
+    color:var(--cream);
+  }
+  .numbers-panel h3{font-size:1.7rem; font-weight:600; max-width:280px;}
+  .num-box{background:rgba(255,255,255,.14); border-radius:20px; padding:22px 18px; text-align:center;}
+  .num-box .n{font-family:'Fredoka'; font-size:2.1rem; font-weight:700;}
+  .num-box .l{font-size:.76rem; margin-top:4px; letter-spacing:.03em; text-transform:uppercase; opacity:.85;}
+
+  /* DOC PANEL — Encargo */
+  .doc-panel{
+    background:var(--cream-2); border:2px dashed rgba(42,31,23,.25); border-radius:28px;
+    padding:40px; margin-top:0;
+  }
+  .doc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:26px;}
+  .doc-item{background:var(--cream); border-radius:18px; padding:22px;}
+  .doc-item .num{
+    font-family:'Fredoka'; font-weight:700; color:var(--pink); font-size:1rem; margin-bottom:8px; display:block;
+  }
+  .doc-item h4{font-size:1rem; font-weight:600; margin-bottom:8px;}
+  .doc-item p{font-size:.85rem; line-height:1.55; color:#4a3a2c;}
+
+  /* CONTACT */
+  .contact-panel{
+    background:var(--ink); border-radius:32px; padding:56px 48px;
+    display:flex; justify-content:space-between; align-items:center; gap:30px; flex-wrap:wrap;
+    color:var(--cream); position:relative; overflow:hidden;
+  }
+  .contact-title{font-size:clamp(1.9rem, 4vw, 2.8rem); font-weight:600; max-width:480px;}
+  .contact-title .script{color:var(--yellow);}
+  .contact-links{display:flex; flex-direction:column; gap:12px; font-size:.95rem;}
+  .contact-links a{display:flex; align-items:center; gap:10px; font-weight:500;}
+  .contact-links a:hover{color:var(--yellow);}
+
+  footer{padding:36px 0; text-align:center; font-size:.8rem; color:#7a6a5a;}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .id-card-wrap{margin-top:20px;}
+    .about-grid{grid-template-columns:1fr;}
+    .work-grid{grid-template-columns:1fr 1fr;}
+    .numbers-panel{grid-template-columns:1fr 1fr;}
+    .doc-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+  @media (max-width:560px){
+    .work-grid{grid-template-columns:1fr;}
+    .numbers-panel{grid-template-columns:1fr;}
+    .contact-panel{padding:36px 26px;}
+    .wrap{padding:0 20px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">martina<span>.</span>toledo</div>
+    <div class="nav-links">
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#talleres">Talleres</a>
+      <a href="#encargo">El encargo</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a class="nav-cta" href="https://wiki.ead.pucv.cl/MartinaToledo" target="_blank" rel="noopener">Ver Casiopea ↗</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="blob" style="width:520px; height:520px; background:var(--peach); top:-180px; right:-160px; opacity:.7;"></div>
+  <div class="blob" style="width:260px; height:260px; background:var(--pink); bottom:-100px; left:-90px; opacity:.35;"></div>
+  <div class="star" style="top:14%; left:6%; color:var(--coral);">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 L14.5 9.5 L24 12 L14.5 14.5 L12 24 L9.5 14.5 L0 12 L9.5 9.5 Z"/></svg>
+  </div>
+  <div class="star" style="top:68%; left:44%; color:var(--yellow);">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 L14.5 9.5 L24 12 L14.5 14.5 L12 24 L9.5 14.5 L0 12 L9.5 9.5 Z"/></svg>
+  </div>
+
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">✺ Escuela de Arquitectura y Diseño · PUCV</span>
+      <h1>Martina<br><span class="accent">Toledo</span></h1>
+      <span class="script">diseñadora en formación</span>
+      <p class="lead">Estudiante de Diseño en la PUCV desde 2023, radicada en La Cruz, Chile. Esta página reúne mis talleres, proyectos y una parte de mi proceso — construida como primer encargo del curso <em>Diseño desde el Código</em>.</p>
+      <div class="hero-actions">
+        <a class="btn-solid" href="#talleres">Ver mis talleres</a>
+        <a class="btn-ghost" href="https://wiki.ead.pucv.cl/MartinaToledo" target="_blank" rel="noopener">Mi Casiopea →</a>
+      </div>
+    </div>
+
+    <div class="id-card-wrap">
+      <div class="id-card">
+        <div class="id-strip"></div>
+        <div class="top-row">
+          <span class="id-tag">Carnet EAD</span>
+          <span class="id-tag">2023</span>
+        </div>
+        <div class="id-photo"> <img src="img/mt777.JPEG" ></div>
+        <div class="id-name">Martina Toledo</div>
+        <div class="id-role">Alumna · Diseño</div>
+        <div class="id-meta">
+          <b>Ingreso</b> 2023<br>
+          <b>Ciudad</b> La Cruz, Chile<br>
+          <b>Carrera</b> Diseño — EAD PUCV
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="sobre-mi">
+  <div class="wrap about-grid">
+    <div class="about-blob">
+        <img src="img/gatitodiseno.png">
+    </div>
+    <div>
+      <div class="section-tag">Sobre mí</div>
+      <h2 class="section-title">Del taller al código, un mismo modo de observar</h2>
+      <ul class="about-list">
+        <li><span class="dot">✺</span> Formada en los talleres de la Escuela de Arquitectura y Diseño PUCV, entre la observación, la luz, el color y la fabricación.</li>
+        <li><span class="dot">✺</span> Interesada en cómo el código puede ser también un material de diseño, tan concreto como el papel o la madera.</li>
+        <li><span class="dot">✺</span> He trabajado en espacios expositivos, máquinas expresivas y habitáculos — proyectos que cruzan lo físico con lo digital.</li>
+        <li><span class="dot">✺</span> Este sitio es mi primer encargo del curso Diseño desde el Código: una landing básica hecha en HTML y CSS.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="talleres">
+  <div class="wrap">
+    <div class="work-toolbar">
+      <div>
+        <div class="section-tag">Talleres y proyectos</div>
+        <h2 class="section-title">Un recorrido por mi paso en la escuela</h2>
+      </div>
+    </div>
+
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="content">
+          <span class="work-year">2026</span>
+          <div class="work-title">Taller de Algoritmos Cinéticos</div>
+          <p class="work-desc">La contemplación de lo sensorial como experiencia del habitar — cruce entre movimiento, algoritmo y espacio.</p>
+          <a class="work-link" href="https://wiki.ead.pucv.cl/Taller_de_Algoritmos_Cin%C3%A9ticos_2026" target="_blank" rel="noopener">Ver en Casiopea →</a>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="content">
+          <span class="work-year">2025</span>
+          <div class="work-title">Taller de Espacios Expositivos</div>
+          <p class="work-desc">Diseño y montaje de espacios para exhibir y comunicar contenidos a un público.</p>
+          <a class="work-link" href="https://wiki.ead.pucv.cl/Taller_de_Espacios_Expositivos_2025" target="_blank" rel="noopener">Ver en Casiopea →</a>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="content">
+          <span class="work-year">2025</span>
+          <div class="work-title">Taller de Fabricación</div>
+          <p class="work-desc">Procesos de producción y materialidad aplicados al objeto de diseño.</p>
+          <a class="work-link" href="https://wiki.ead.pucv.cl/Taller_de_Fabricaci%C3%B3n_2025" target="_blank" rel="noopener">Ver en Casiopea →</a>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="content">
+          <span class="work-year">2024</span>
+          <div class="work-title">Taller de Máquinas Expresivas</div>
+          <p class="work-desc">Proyecto "Salto mortal": diseño de una máquina que comunica a través del movimiento.</p>
+          <a class="work-link" href="https://wiki.ead.pucv.cl/DIS_1162-1_Proyecto_-_Salto_mortal_/_Martina_Toledo_Apablaza" target="_blank" rel="noopener">Ver en Casiopea →</a>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="content">
+          <span class="work-year">2024</span>
+          <div class="work-title">Taller del Habitáculo</div>
+          <p class="work-desc">Exploración del habitar a pequeña escala, desarrollado en tres módulos sucesivos.</p>
+          <a class="work-link" href="https://wiki.ead.pucv.cl/Taller_del_Habit%C3%A1culo_2024" target="_blank" rel="noopener">Ver en Casiopea →</a>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="content">
+          <span class="work-year">2023</span>
+          <div class="work-title">Taller Luz y Color</div>
+          <p class="work-desc">Primer taller en la escuela: cierre de ciclo y proyecto final sobre percepción y color.</p>
+          <a class="work-link" href="https://wiki.ead.pucv.cl/Taller_Luz_y_Color_2023" target="_blank" rel="noopener">Ver en Casiopea →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="numbers-panel">
+      <h3>Mi paso por la escuela, en números</h3>
+      <div class="num-box"><div class="n">2023</div><div class="l">Año de ingreso</div></div>
+      <div class="num-box"><div class="n">7+</div><div class="l">Talleres cursados</div></div>
+      <div class="num-box"><div class="n">9+</div><div class="l">Cursos y proyectos</div></div>
+    </div>
+  </div>
+</section>
+        
+<section id="contacto">
+  <div class="wrap">
+    <div class="contact-panel">
+      <div class="star" style="top:16px; right:180px; color:var(--yellow);">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 L14.5 9.5 L24 12 L14.5 14.5 L12 24 L9.5 14.5 L0 12 L9.5 9.5 Z"/></svg>
+      </div>
+      <div class="contact-title">Sigamos en <span class="script">contacto</span></div>
+      <div class="contact-links">
+        <a href="mailto:martina.toledo.a@mail.pucv.cl">✉ martina.toledo.a@mail.pucv.cl</a>
+        <a href="https://wiki.ead.pucv.cl/MartinaToledo" target="_blank" rel="noopener">↗ wiki.ead.pucv.cl/MartinaToledo</a>
+        <a href="#" onclick="return false;">📍 La Cruz, Chile</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>Martina Toledo — Diseño, Escuela de Arquitectura y Diseño PUCV · Encargo 1, Diseño desde el Código 2025</footer>
+
+</body>
+</html>
+    <title>Pen</title>
+  </head>
+  <body>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
